@@ -1,0 +1,43 @@
+<div class="container mt-5">
+  <div class="card shadow-lg mb-4"> <!-- Increased shadow for more depth -->
+    <div class="card-header  text-black">
+      Drug List <!-- Added a header for more context -->
+    </div>
+    <div class="card-body">
+      <table class="table  table-hover">
+        <thead class="thead-light"> <!-- Changed to light header for a softer appearance -->
+          <tr>
+            <th>Id</th>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Brand</th>
+            <th>Dosage</th>
+            <th>Drug Class</th>
+            <th>Last update</th>
+            <th *ngIf="authService.isAdmin()" colspan="2">Actions</th> <!-- Merge two columns into one header for actions -->
+          </tr>
+        </thead>
+        <tbody *ngFor="let i of drugs">
+          <tr>
+            <td>{{ i.id }}</td>
+            <td>
+              <img class="rounded-circle img-responsive" src="{{i.imageStr}}" alt="Drug Image" style="height:50px; width:50px;">
+
+            </td>
+            <td>{{ i.genericName }}</td>
+            <td>{{ i.brandNames }}</td>
+            <td>{{ i.dosageForm }}</td>
+            <td>{{ i.drugClass.name}}</td>
+            <td>{{ i.lastUpdated | date : "dd/MM/yyyy" }}</td>
+            <td>
+              <a *ngIf="authService.isAdmin()" class="btn  btn-sm" (click)="supprimerDrug(i.id)"><img width="24" height="24" src="https://img.icons8.com/material-sharp/24/filled-trash.png" alt="filled-trash"/></a>
+            </td>
+            <td>
+              <a *ngIf="authService.isAdmin()" class="btn  btn-sm" [routerLink]="['/update-drug', i.id]"><img width="30" height="30" src="https://img.icons8.com/ios-glyphs/30/edit-file.png" alt="edit-file"/></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

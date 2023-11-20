@@ -1,0 +1,50 @@
+/* Keyframes for spinning animation */
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Container for the loader */
+.loader-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent white background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1; /* Ensures the loader is above other elements */
+    opacity: 0; /* Initially hidden */
+    pointer-events: none; /* Prevents interaction with elements below */
+    transition: opacity 0.3s; /* Smooth transition for showing/hiding */
+}
+
+/* Modifier class to show the loader */
+.loader-container.show-loader {
+    opacity: 1; /* Make the loader visible */
+    pointer-events: auto; /* Enable interactions */
+}
+
+/* Styling for the loader */
+.loader {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+}
+
+/* Spinner styling */
+.spinner {
+    border: 5px solid rgba(0, 0, 0, 0.2); /* Light gray border */
+    border-top: 5px solid #15ff00; /* Colored top border for spinning effect */
+    border-radius: 50%; /* Circular shape */
+    width: 50px;
+    height: 50px;
+    animation: spin 2s linear infinite; /* Apply the spinning animation */
+}

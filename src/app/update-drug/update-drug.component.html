@@ -1,0 +1,48 @@
+<div class="container mt-5">
+  <div class="card shadow">
+    <div class="card-header text-black">
+      <h3 class="mb-0">Modify Drugs</h3>
+    </div>
+    <form class="p-4">
+      <div class="form-row ">
+        <!-- Hidden Field for Drug ID -->
+        <input hidden type="number" [(ngModel)]="currentDrug.id" name="id" />
+        <!-- Name -->
+        <div class="form-group col-md-2">
+          <label for="genericName">Name</label>
+          <input type="text" [(ngModel)]="currentDrug.genericName" name="genericName" class="form-control" id="genericName" placeholder="Drug Name" />
+        </div>
+        <!-- Brand -->
+        <div class="form-group col-md-2">
+          <label for="brandNames">Brand</label>
+          <input type="text" [(ngModel)]="currentDrug.brandNames" name="brandNames" class="form-control" id="brandNames" placeholder="Drug Brand" />
+        </div>
+        <!-- Dosage -->
+        <div class="form-group col-md-2">
+          <label for="dosageForm">Dosage</label>
+          <input type="text" [(ngModel)]="currentDrug.dosageForm" name="dosageForm" class="form-control" id="dosageForm" placeholder="Dosage Form" />
+        </div>
+        <!-- Drug Class -->
+        <div class="form-group col-md-2">
+          <label for="updateidcl">Drug Class</label>
+          <select class="form-control" id="updateidcl" name="updateidcl" [(ngModel)]="updateidcl">
+            <option *ngFor="let d of DrugClass" [value]="d.idcl">
+              {{d.name}}
+            </option>
+          </select>
+        </div>
+        <!-- Date -->
+        <div class="form-group col-md-2">
+          <label for="dateCreation">Date</label>
+          <input type="date" [ngModel]="currentDrug.lastUpdated | date: 'yyyy-MM-dd'"
+            (ngModelChange)="currentDrug.lastUpdated = $event" name="dateCreation" class="form-control" id="dateCreation" />
+        </div>
+      </div>
+      <div class="form-row text-center">
+        <div class="col ">
+          <button type="submit" (click)="updateDrug()" class="btn "><img width="30" height="30" src="https://img.icons8.com/ios-glyphs/30/edit-file.png" alt="edit-file"/></button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

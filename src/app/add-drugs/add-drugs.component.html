@@ -1,0 +1,47 @@
+<div class="container my-5">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <div class="card shadow-lg p-4">
+        <h2 class="card-title text-center">Add Drugs</h2>
+        <form class="card-body">
+          <div hidden class="form-group">
+            <label>Id</label>
+            <input hidden type="number" [(ngModel)]="newDrug.id" name="Id" class="form-control" [value]="newDrug.id" />
+          </div>
+          <div class="mb-3">
+            <label for="genericName" class="form-label">Name</label>
+            <input type="text" class="form-control" id="genericName" [(ngModel)]="newDrug.genericName" name="genericName" [value]="newDrug.genericName" />
+          </div>
+          <div class="mb-3">
+            <label for="brandNames" class="form-label">Brand Name</label>
+            <input type="text" class="form-control" id="brandNames" [(ngModel)]="newDrug.brandNames" name="brandNames" [value]="newDrug.brandNames" />
+          </div>
+          <div class="mb-3">
+            <label for="dosageForm" class="form-label">Dosage</label>
+            <input type="text" class="form-control" id="dosageForm" [(ngModel)]="newDrug.dosageForm" name="dosageForm" [value]="newDrug.dosageForm" />
+          </div>
+          <div class="mb-3">
+            <label for="idcl" class="form-label">Drug Class</label>
+            <select class="form-control" id="idcl" name="idcl" [(ngModel)]="newidcl">
+              <option *ngFor="let d of DrugClass" [value]="d.idcl">{{ d.name }}</option>
+            </select>
+          </div>
+          <div class="mb-4">
+            <label for="imageUpload" class="form-label mb-2">Image</label>
+            <input type="file" class="form-control" id="imageUpload" (change)="onImageUpload($event)" name="logo">
+          </div>
+          <div class="mb-3">
+            <img [src]="imagePath" class="img-fluid rounded" style="max-height: 300px;" />
+          </div>
+          <div class="mb-4">
+            <label for="lastUpdated" class="form-label">Last Update</label>
+            <input type="date" class="form-control" id="lastUpdated" [(ngModel)]="newDrug.lastUpdated" name="lastUpdated" />
+          </div>
+          <div class="d-grid">
+            <button type="submit" class="btn btn-dark btn-lg" (click)="addDrug()">Ajouter</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,79 @@
+<div class="container my-5">
+    <div class="row align-items-center">
+        <!-- Form Column -->
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-body">
+                    <a href="#" class="d-flex justify-content-center mb-4">
+                    </a>
+                    <div class="auth-header text-center">
+                        <h2 class="text-secondary"><b>Sign Up</b></h2>
+                        <p class="fs-4">Create your account</p>
+                        <div class="loader-container" [ngClass]="{ 'show-loader': isLoading }">
+                            <div class="loader">
+                                <div class="spinner"></div>
+                            </div>
+                        </div>
+                        <form *ngIf="!isSuccessful" name="form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
+                            <!-- Username Input -->
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="username" name="username" [(ngModel)]="form.username" required minlength="3" maxlength="20" #username="ngModel" [ngClass]="{ 'is-invalid': f.submitted && username.errors }" />
+                                <label for="username">Username:</label>
+                                <div class="invalid-feedback" *ngIf="username.errors && f.submitted">
+                                    <div *ngIf="username.errors['required']">Username is required</div>
+                                    <div *ngIf="username.errors['minlength']">Username must be at least 3 characters</div>
+                                    <div *ngIf="username.errors['maxlength']">Username must be at most 20 characters</div>
+                                </div>
+                            </div>
+                            <!-- Email Input -->
+                            <div class="form-floating mb-3">
+                                <input type="email" class="form-control" id="email" name="email" [(ngModel)]="form.email" required email #email="ngModel" [ngClass]="{ 'is-invalid': f.submitted && email.errors }" />
+                                <label for="email">Email:</label>
+                                <div class="invalid-feedback" *ngIf="email.errors && f.submitted">
+                                    <div *ngIf="email.errors['required']">Email is required</div>
+                                    <div *ngIf="email.errors['email']">Email must be a valid email address</div>
+                                </div>
+                            </div>
+                            <!-- Password Input -->
+                            <div class="form-floating mb-3">
+                                <input type="password" class="form-control" id="password" name="password" [(ngModel)]="form.password" required #password="ngModel" [ngClass]="{ 'is-invalid': f.submitted && password.errors }" />
+                                <label for="password">Password:</label>
+                                <div class="invalid-feedback" *ngIf="password.errors && f.submitted">
+                                    <div *ngIf="password.errors['required']">Password is required</div>
+                                    <div *ngIf="password.errors['minlength']">Password must be at least 6 characters</div>
+                                </div>
+                            </div>
+                            <!-- Confirm Password Input -->
+                            <div class="form-floating mb-3">
+                                <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" [(ngModel)]="form.confirmPassword" required />
+                                <label for="confirmPassword">Confirm Password:</label>
+                            </div>
+                            <!-- Sign Up Button -->
+                            <div class="d-grid mb-3">
+                                <button class="btn btn-dark btn-block" type="submit">Sign Up</button>
+                            </div>
+                            <!-- Error Message -->
+                            <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
+                                Signup failed!<br />{{ errorMessage }}
+                            </div>
+                        </form>
+                        <!-- Success Message -->
+                        <div class="alert alert-success" *ngIf="isSuccessful">
+                            Your registration is successful!
+                        </div>
+                        <!-- Redirect Link -->
+                        <hr />
+                        <div class="d-flex justify-content-center">
+                            <a class="text-dark" [routerLink]="['/login']">Already have an account?</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Image Column -->
+        <div class="col-md-6 d-none d-md-block">
+            <img src="https://img.freepik.com/free-vector/login-concept-illustration_114360-739.jpg" class="img-fluid rounded" alt="Responsive image">
+        </div>
+    </div>
+</div>

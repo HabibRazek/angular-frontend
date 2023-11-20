@@ -1,0 +1,56 @@
+<nav class="navbar navbar-expand-lg text-light bg-dark">
+  <div class="container-fluid">
+    
+    <a class="navbar-brand text-light">Gestion Drugs</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item" *ngIf="authService.loggedUser">
+          <a class="nav-link active text-light" aria-current="page" routerLink="/drugs">Home</a>
+      </li>
+      
+        <li *ngIf="authService.isAdmin()"   class="nav-item">
+          <a class="nav-link active text-light" routerLink="liste-users">Liste users</a>
+        </li>
+        <li *ngIf="authService.isRole(['ADMIN', 'USER'])" class="nav-item dropdown text-light">
+          <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false" *ngIf="authService.isRole(['ADMIN', 'USER'])">
+            Drugs
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <a *ngIf="authService.isAdmin()" class="dropdown-item" routerLink="add-drugs">Add Drug</a>
+            </li>
+            <li><a class="dropdown-item" routerLink="/drugs">Display</a></li>
+            <li><a class="dropdown-item" routerLink="search-drugs-class">Class Search</a></li>
+            <li><a class="dropdown-item" routerLink="search-name">Name Search</a></li>
+            <li><a *ngIf="authService.isAdmin()" class="dropdown-item" routerLink="liste-drugs-class">Drug Class management</a></li>
+
+
+
+
+          </ul>
+        </li>
+      </ul>
+      <ul class="navbar-nav ml-auto">
+        <li> <a class="nav-link text-light">{{authService.loggedUser}} </a></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            Connexion
+          </a>
+          <ul class="dropdown-menu">
+            <a *ngIf="!authService.isRole(['ADMIN', 'USER'])" class="dropdown-item" routerLink="login">login</a>
+            <a *ngIf="authService.isRole(['ADMIN', 'USER'])" class="dropdown-item" (click)="onlogout()">logout</a>
+            <li><a class="dropdown-item" *ngIf="authService.isRole(['ADMIN', 'USER'])" href="#">Profile</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<br />
+<router-outlet></router-outlet>
